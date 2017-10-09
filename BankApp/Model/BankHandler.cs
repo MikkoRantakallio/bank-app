@@ -31,9 +31,24 @@ namespace BankApp.Model
             }
         }
 
-        public void DeleteBank (Bank bank)
+        public void UpdateBank( int id, string name)
         {
+            using (var context = new BankdbContext())
+            {
+                var bank = context.Bank.Find(id);
+                bank.Name = name;
+                context.SaveChanges();
+            }
+        }
 
+        public void DeleteBank (int id)
+        {
+            using (var context = new BankdbContext())
+            {
+                var bank = context.Bank.Find(id);
+                context.Bank.Remove(bank);
+                context.SaveChanges();
+            }
         }
     }
 }
