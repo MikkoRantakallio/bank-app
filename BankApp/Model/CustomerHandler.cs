@@ -63,8 +63,8 @@ namespace BankApp.Model
         {
             using (var context = new BankdbContext())
             {
-                var custAcc = context.Customer.Include();
-                var acc = custAcc.BankAccount.First();
+//                var custAcc = context.Customer.Include();
+//                var acc = custAcc.BankAccount.First();
 
             }
         }

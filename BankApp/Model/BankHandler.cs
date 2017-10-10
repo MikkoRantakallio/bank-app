@@ -50,5 +50,14 @@ namespace BankApp.Model
                 context.SaveChanges();
             }
         }
+
+        public Bank GetBank(int id)
+        {
+            using (var context = new BankdbContext())
+            {
+                var bank = context.Bank.Find(id);
+                return bank;
+            }
+        }
     }
 }

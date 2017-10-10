@@ -20,6 +20,6 @@ namespace BankApp.Model
 
         [ForeignKey("Iban")]
         [InverseProperty("BankAccountTransaction")]
-        public BankAccount IbanNavigation { get; set; }
+        public BankAcc IbanNavigation { get; set; }
     }
 }

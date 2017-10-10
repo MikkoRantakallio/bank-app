@@ -8,31 +8,44 @@ namespace BankApp
     {
         static void Main(string[] args)
         {
-
             Customer cust = new Customer();
             CustomerHandler custHandler = new CustomerHandler();
+
+            BankAcc account = new BankAcc();
             BankAccountHandler accountHandler = new BankAccountHandler();
 
             Bank bank = new Bank();
             BankHandler bankHandler = new BankHandler();
-            /*
-                        // Insert bank
-                        bank.Name = "SP";
-                        bank.Bic = "ITELFIHH";
-                        bankHandler.InsertBank(bank);
 
-                        // Update bank name by id
-                        bankHandler.UpdateBank(8, "Sampo");
 
-                        // Delete bank by id
-                        bankHandler.DeleteBank(10);
-                        */
+            // Insert bank - OK
+            bank.Name = "Santander";
+            bank.Bic = "ITELFIHH";
+            //bankHandler.InsertBank(bank);
 
-            // Insert customer
-            cust.BankId = 2;
-            cust.FirstName = "Paavo";
-            cust.LastName = "Pesusieni";
-            //            custHandler.InsertCustomer(cust);
+            // Update bank name by id -OK
+            bank = bankHandler.GetBank(14);
+            bank.Name = "STS";
+            //bankHandler.UpdateBank(bank);
+
+            // Delete bank by id - OK
+            //bankHandler.DeleteBank(12);
+
+            // Insert customer - OK
+            cust.BankId = 14;
+            cust.FirstName = "Pate";
+            cust.LastName = "Postimies";
+//            custHandler.InsertCustomer(cust);
+
+            // Insert account - OK
+            account.Name = "Sukanvarsi";
+            account.CustomerId = cust.Id;
+            account.BankId = cust.BankId;
+            account.Iban = "345678100204077";
+            account.Balance = 955;
+  //          accountHandler.InsertBankAccount(account);
+
+            //======================================================
 
             // Get customer list
             var custList = custHandler.GetCustomers();
@@ -52,7 +65,7 @@ namespace BankApp
             var accountList = accountHandler.GetAccountList();
 
             // Delete bank account
-//            accountHandler.DeleteBankAccount(2);
+            //            accountHandler.DeleteBankAccount(2);
 
             Console.ReadLine();
         }

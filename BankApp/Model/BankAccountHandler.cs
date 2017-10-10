@@ -11,6 +11,15 @@ namespace BankApp.Model
         {
         }
 
+        public void InsertBankAccount(BankAcc bankAcc)
+        {
+            using (var context = new BankdbContext())
+            {
+                context.Add(bankAcc);
+                context.SaveChanges();
+            }
+        }
+
         public void DeleteBankAccount(int id)
         {
             using (var context = new BankdbContext())
@@ -31,7 +40,7 @@ namespace BankApp.Model
             }
         }
 
-        public List<BankAccount> GetAccountList()
+        public List<BankAcc> GetAccountList()
         {
             using (var context = new BankdbContext())
             {

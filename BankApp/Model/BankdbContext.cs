@@ -7,7 +7,7 @@ namespace BankApp.Model
     public partial class BankdbContext : DbContext
     {
         public virtual DbSet<Bank> Bank { get; set; }
-        public virtual DbSet<BankAccount> BankAccount { get; set; }
+        public virtual DbSet<BankAcc> BankAccount { get; set; }
         public virtual DbSet<BankAccountTransaction> BankAccountTransaction { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
 
@@ -22,18 +22,18 @@ namespace BankApp.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BankAccount>(entity =>
+            modelBuilder.Entity<BankAcc>(entity =>
             {
                 entity.Property(e => e.Iban).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Bank)
-                    .WithMany(p => p.BankAccount)
+                    .WithMany(p => p.BankAcc)
                     .HasForeignKey(d => d.BankId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BankAccount_Bank");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.BankAccount)
+                    .WithMany(p => p.BankAcc)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BankAccount_Customer");

@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BankApp.Model
 {
-    public partial class BankAccount
+    public partial class BankAcc
     {
-        public BankAccount()
+        public BankAcc()
         {
             BankAccountTransaction = new HashSet<BankAccountTransaction>();
         }
@@ -24,10 +24,10 @@ namespace BankApp.Model
         public decimal Balance { get; set; }
 
         [ForeignKey("BankId")]
-        [InverseProperty("BankAccount")]
+        [InverseProperty("BankAcc")]
         public Bank Bank { get; set; }
         [ForeignKey("CustomerId")]
-        [InverseProperty("BankAccount")]
+        [InverseProperty("BankAcc")]
         public Customer Customer { get; set; }
         [InverseProperty("IbanNavigation")]
         public ICollection<BankAccountTransaction> BankAccountTransaction { get; set; }
