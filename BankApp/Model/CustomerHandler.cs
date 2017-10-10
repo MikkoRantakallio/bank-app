@@ -17,7 +17,10 @@ namespace BankApp.Model
             using (var context = new BankdbContext())
             {
                 var newCust = context.Customer.Find(cust.Id);
+
                 newCust.LastName = cust.LastName;
+                newCust.FirstName = cust.FirstName;
+
                 context.SaveChanges();
             }
         }
@@ -63,8 +66,8 @@ namespace BankApp.Model
         {
             using (var context = new BankdbContext())
             {
-//                var custAcc = context.Customer.Include();
-//                var acc = custAcc.BankAccount.First();
+                //                var custAcc = context.Customer.Include();
+                //                var acc = custAcc.BankAccount.First();
 
             }
         }

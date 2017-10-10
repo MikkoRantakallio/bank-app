@@ -9,7 +9,7 @@ namespace BankApp.Model
     {
         public Customer()
         {
-            BankAcc = new HashSet<BankAcc>();
+            BankAccount = new HashSet<BankAccount>();
         }
 
         [Column("id")]
@@ -24,6 +24,6 @@ namespace BankApp.Model
         [InverseProperty("Customer")]
         public Bank Bank { get; set; }
         [InverseProperty("Customer")]
-        public ICollection<BankAcc> BankAcc { get; set; }
+        public ICollection<BankAccount> BankAccount { get; set; }
     }
 }

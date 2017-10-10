@@ -11,7 +11,7 @@ namespace BankApp.Model
         {
         }
 
-        public void InsertBankAccount(BankAcc bankAcc)
+        public void InsertBankAccount(BankAccount bankAcc)
         {
             using (var context = new BankdbContext())
             {
@@ -40,7 +40,7 @@ namespace BankApp.Model
             }
         }
 
-        public List<BankAcc> GetAccountList()
+        public List<BankAccount> GetAccountList()
         {
             using (var context = new BankdbContext())
             {
@@ -48,5 +48,15 @@ namespace BankApp.Model
                 return accounts;
             }
         }
+
+        public List<BankAccount> GetCustomerAccountList(int custId)
+        {
+            using (var context = new BankdbContext())
+            {
+                var accounts = context.BankAccount.Where(bankAccount => bankAccount.CustomerId == custId).ToList();
+                return accounts;
+            }
+        }
+
     }
 }

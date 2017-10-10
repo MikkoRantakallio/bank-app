@@ -13,13 +13,13 @@ namespace BankApp.Model
         [Column("IBAN", TypeName = "nchar(50)")]
         public string Iban { get; set; }
         [Required]
-        [Column(TypeName = "nchar(50)")]
-        public string Amount { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Amount { get; set; }
         [Column(TypeName = "date")]
         public DateTime TimeStamp { get; set; }
 
         [ForeignKey("Iban")]
         [InverseProperty("BankAccountTransaction")]
-        public BankAcc IbanNavigation { get; set; }
+        public BankAccount IbanNavigation { get; set; }
     }
 }
