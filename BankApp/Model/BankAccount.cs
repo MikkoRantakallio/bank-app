@@ -15,6 +15,7 @@ namespace BankApp.Model
         [Key]
         [Column("IBAN", TypeName = "nchar(50)")]
         public string Iban { get; set; }
+        [Required]
         [Column(TypeName = "nchar(50)")]
         public string Name { get; set; }
         public int BankId { get; set; }

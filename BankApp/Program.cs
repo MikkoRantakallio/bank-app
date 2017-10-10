@@ -1,5 +1,6 @@
 ﻿using System;
 using BankApp.Model;
+using Ekoodi.Utilities.Bank;
 
 namespace BankApp
 {
@@ -10,6 +11,7 @@ namespace BankApp
 
             Customer cust = new Customer();
             CustomerHandler custHandler = new CustomerHandler();
+            BankAccountHandler accountHandler = new BankAccountHandler();
 
             Bank bank = new Bank();
             BankHandler bankHandler = new BankHandler();
@@ -34,6 +36,23 @@ namespace BankApp
 
             // Get customer list
             var custList = custHandler.GetCustomers();
+
+            //Update customer
+            cust = custHandler.GetCustomer(5);
+            cust.LastName = "Meikäläinen";
+            custHandler.UpdateCustomer(cust);
+
+            // Delete customer
+            //            custHandler.DeleteCustomer(cust.Id);
+
+            // Delete customer account
+            accountHandler.DeleteCustomerBankAccount(cust.Id);
+
+            // Get account list
+            var accountList = accountHandler.GetAccountList();
+
+            // Delete bank account
+//            accountHandler.DeleteBankAccount(2);
 
             Console.ReadLine();
         }

@@ -19,7 +19,7 @@ namespace BankApp.Model
         [Column(TypeName = "nchar(50)")]
         public string Name { get; set; }
         [Required]
-        [Column("BIC", TypeName = "nchar(10)")]
+        [Column("BIC", TypeName = "nchar(50)")]
         public string Bic { get; set; }
 
         [InverseProperty("Bank")]

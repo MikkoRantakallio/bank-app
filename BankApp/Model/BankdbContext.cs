@@ -15,7 +15,8 @@ namespace BankApp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=RAKKINE\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Data Source=DKO-S010A-018\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
             }
         }
 
@@ -52,7 +53,6 @@ namespace BankApp.Model
                 entity.HasOne(d => d.Bank)
                     .WithMany(p => p.Customer)
                     .HasForeignKey(d => d.BankId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Customer_Bank");
             });
         }

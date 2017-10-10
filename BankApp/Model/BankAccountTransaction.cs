@@ -12,8 +12,9 @@ namespace BankApp.Model
         [Required]
         [Column("IBAN", TypeName = "nchar(50)")]
         public string Iban { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
-        public decimal Amount { get; set; }
+        [Required]
+        [Column(TypeName = "nchar(50)")]
+        public string Amount { get; set; }
         [Column(TypeName = "date")]
         public DateTime TimeStamp { get; set; }
 

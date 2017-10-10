@@ -14,13 +14,11 @@ namespace BankApp.Model
 
         [Column("id")]
         public int Id { get; set; }
-        [Required]
         [Column(TypeName = "nchar(50)")]
         public string FirstName { get; set; }
-        [Required]
         [Column(TypeName = "nchar(50)")]
         public string LastName { get; set; }
-        public int BankId { get; set; }
+        public int? BankId { get; set; }
 
         [ForeignKey("BankId")]
         [InverseProperty("Customer")]
