@@ -52,7 +52,9 @@ namespace BankApp
             var accountList = accountHandler.GetAccountList();
 
             // Get customer list - OK
-            var custList = custHandler.GetCustomers();
+//            var custList = custHandler.GetCustomers();
+            var custList = bankHandler.GetBankCustomers(1);
+
 
             //Update customer -OK
             cust = custHandler.GetCustomer(3);
@@ -64,15 +66,20 @@ namespace BankApp
 
             // Delete customer 
             // TODO: SQL Cascade delete
-            // custHandler.DeleteCustomer(7);
+            custHandler.DeleteCustomer(7);
 
             // Get customer account list and balances - OK
             cust = custHandler.GetCustomer(3);
-            accountList = accountHandler.GetCustomerAccountList(cust.Id);
+            //            accountList = accountHandler.GetCustomerAccountList(cust.Id);
+            List<Model.BankAccount> accList = new List<Model.BankAccount>();
+
+            accList = custHandler.GetCustomerBankAccounts(3);
+
+
 
             Console.WriteLine("Tilin omistaja:\t {0} {1}", cust.FirstName.Trim(), cust.LastName.Trim());
 
-            foreach (BankApp.Model.BankAccount acc in accountList)
+            foreach (BankApp.Model.BankAccount acc in accList)
             {
                 Console.WriteLine("Tilin nimi:\t {0}", acc.Name);
                 Console.WriteLine("Tilin saldo:\t {0}", acc.Balance);
@@ -115,6 +122,46 @@ namespace BankApp
             }
 
             //======================================================
+
+            bool exit = false;
+
+            do
+            {
+                Console.Write("Give finnish bank account number (X=Exit): ");
+                string bankAccountInput = Console.ReadLine();
+
+                if (bankAccountInput.ToUpper() == "X")
+                    exit = true;
+
+                if (!exit)
+                {
+                    // Create and check bank account
+                    try
+                    {
+                        Ekoodi.Utilities.Bank.BankAccount myAccount = new Ekoodi.Utilities.Bank.BankAccount(bankAccountInput);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Finnish format: \t{0}", myAccount.FinnishFormatStr);
+                        Console.WriteLine("Long format: \t\t{0}", myAccount.LongFormatStr);
+                        Console.WriteLine("IBAN: \t\t\t{0}", myAccount.IbanFormatStr);
+                        Console.WriteLine("BIC: \t\t\t{0}", myAccount.BicStr);
+                        Console.WriteLine("Check digit OK");
+
+                        account.Name = "Jamo III";
+                        account.CustomerId = 3;
+                        account.BankId = 1;
+                        account.Iban = myAccount.IbanFormatStr;
+                        account.Balance = 550.00m;
+                        accountHandler.InsertBankAccount(account);
+                    }
+                    catch (InvalidAccountNumberException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    Console.WriteLine();
+                }
+            } while (!exit);
+
 
             Console.ReadLine();
         }

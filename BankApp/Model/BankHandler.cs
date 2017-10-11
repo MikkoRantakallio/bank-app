@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 namespace BankApp.Model
 {
     public class BankHandler
@@ -57,6 +58,17 @@ namespace BankApp.Model
             {
                 var bank = context.Bank.Find(id);
                 return bank;
+            }
+        }
+
+        public List<Customer> GetBankCustomers(int id)
+        {
+            using (var context = new BankdbContext())
+            {
+                Bank bank = context.Bank.Find(id);
+                context.Entry(bank).Collection(c => c.Customer).Load();
+
+                return bank.Customer.ToList();
             }
         }
     }

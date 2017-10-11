@@ -15,8 +15,8 @@ namespace BankApp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//                optionsBuilder.UseSqlServer(@"Data Source=DKO-S010A-018\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
-                optionsBuilder.UseSqlServer(@"Data Source=RAKKINE\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
+                optionsBuilder.UseSqlServer(@"Data Source=DKO-S010A-018\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
+//                optionsBuilder.UseSqlServer(@"Data Source=RAKKINE\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
             }
         }
 

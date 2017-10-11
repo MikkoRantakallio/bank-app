@@ -72,17 +72,15 @@ namespace BankApp.Model
             }
         }
 
-
-        /*
         public List<BankAccount> GetCustomerBankAccounts(int id)
         {
             using (var context = new BankdbContext())
             {
-                var custAccList = context.Customer.Find(id)
-                    .Include()
+                Customer cust = context.Customer.Find(id);
+                context.Entry(cust).Collection(c => c.BankAccount).Load();
 
-                return custAccList;
+                return cust.BankAccount.ToList();
             }
-        }*/
+        }
     }
 }
